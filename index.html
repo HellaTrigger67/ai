@@ -2,22 +2,21 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="Крутые собаки — лендинг о самых крутых породах, их характере и фактах." />
-<title>🐕 Крутые собаки — лендинг</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>DogOS — крутые собаки без возни</title>
 <style>
   :root {
-    --bg: #0f1115;
-    --surface: #171a21;
-    --surface-2: #1f232c;
-    --text: #eef1f7;
-    --muted: #9aa3b2;
-    --accent: #ffb347;
-    --accent-2: #ff7a59;
-    --border: #2a2f3a;
+    --bg: #0e0f13;
+    --bg-soft: #16181f;
+    --card: #1c1f28;
+    --border: #2a2e3a;
+    --text: #e8eaf0;
+    --muted: #9aa0b0;
+    --accent: #f2a33c;
+    --accent-2: #6ee7b7;
+    --danger: #ef6b6b;
     --radius: 16px;
-    --maxw: 1120px;
+    --max: 1120px;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -25,662 +24,399 @@
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
     background: var(--bg);
     color: var(--text);
-    line-height: 1.6;
+    line-height: 1.55;
     -webkit-font-smoothing: antialiased;
   }
 
-  img { display: block; max-width: 100%; }
   a { color: inherit; text-decoration: none; }
 
-  .container {
-    width: 100%;
-    max-width: var(--maxw);
-    margin: 0 auto;
-    padding: 0 20px;
-  }
+  .container { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
 
-  /* ---------- NAVBAR ---------- */
+  /* ---------- Header ---------- */
   header {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    background: rgba(15, 17, 21, 0.85);
-    backdrop-filter: blur(10px);
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(12px);
+    background: rgba(14,15,19,.75);
     border-bottom: 1px solid var(--border);
   }
-
   .nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: flex; align-items: center; justify-content: space-between;
     height: 64px;
   }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: 800;
-    font-size: 1.15rem;
-    letter-spacing: 0.3px;
-  }
-
-  .logo span { color: var(--accent); }
-
-  .nav-links {
-    display: flex;
-    gap: 26px;
-    list-style: none;
-    font-size: 0.95rem;
-    color: var(--muted);
-  }
-
-  .nav-links a { transition: color 0.2s; }
-  .nav-links a:hover { color: var(--accent); }
-
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: -.02em; }
+  .logo span { font-size: 22px; }
+  .nav-links { display: flex; gap: 26px; font-size: 14px; color: var(--muted); }
+  .nav-links a:hover { color: var(--text); }
   .nav-cta {
-    padding: 9px 18px;
-    border-radius: 999px;
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    color: #1a1206;
-    font-weight: 700;
-    font-size: 0.9rem;
-    transition: transform 0.2s, box-shadow 0.2s;
+    background: var(--accent); color: #14110a; font-weight: 700;
+    padding: 9px 16px; border-radius: 10px; font-size: 14px;
   }
+  .nav-cta:hover { filter: brightness(1.08); }
 
-  .nav-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 24px rgba(255, 140, 70, 0.35);
-  }
-
-  .burger {
-    display: none;
-    background: none;
-    border: 0;
-    color: var(--text);
-    font-size: 1.6rem;
-    cursor: pointer;
-  }
-
-  /* ---------- HERO ---------- */
-  .hero {
-    position: relative;
-    padding: 90px 0 80px;
-    overflow: hidden;
-  }
-
+  /* ---------- Hero ---------- */
+  .hero { padding: 76px 0 40px; position: relative; overflow: hidden; }
   .hero::before {
-    content: "";
-    position: absolute;
-    inset: -20% -10% auto -10%;
-    height: 520px;
-    background:
-      radial-gradient(600px 300px at 20% 10%, rgba(255, 179, 71, 0.18), transparent 60%),
-      radial-gradient(500px 260px at 85% 20%, rgba(255, 122, 89, 0.16), transparent 60%);
+    content: ""; position: absolute; inset: -20% -10% auto -10%; height: 520px;
+    background: radial-gradient(circle at 30% 20%, rgba(242,163,60,.18), transparent 60%),
+                radial-gradient(circle at 80% 0%, rgba(110,231,183,.12), transparent 55%);
     pointer-events: none;
   }
-
-  .hero-inner {
+  .hero-grid {
+    display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center;
     position: relative;
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 48px;
-    align-items: center;
   }
-
   .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 14px;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    font-size: 0.8rem;
-    color: var(--muted);
-    background: var(--surface);
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--accent-2); border: 1px solid rgba(110,231,183,.3);
+    background: rgba(110,231,183,.07); padding: 6px 12px; border-radius: 999px;
     margin-bottom: 22px;
   }
-
-  .badge .dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: #3ddc84;
-    box-shadow: 0 0 10px #3ddc84;
-  }
-
-  .hero h1 {
-    font-size: clamp(2.1rem, 4.5vw, 3.4rem);
-    line-height: 1.12;
-    font-weight: 900;
-    letter-spacing: -0.5px;
-  }
-
-  .hero h1 .grad {
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
-  .hero p.lead {
-    margin-top: 20px;
-    color: var(--muted);
-    font-size: 1.08rem;
-    max-width: 520px;
-  }
-
-  .hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    margin-top: 32px;
-  }
-
+  .badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-2); box-shadow: 0 0 10px var(--accent-2); }
+  h1 { font-size: clamp(34px, 5vw, 58px); line-height: 1.05; letter-spacing: -.03em; font-weight: 800; }
+  h1 .accent { color: var(--accent); }
+  .hero p.lead { color: var(--muted); font-size: 17px; max-width: 480px; margin: 22px 0 30px; }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
   .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 13px 26px;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 0.98rem;
-    border: 1px solid transparent;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 13px 22px; border-radius: 12px; font-weight: 700; font-size: 15px;
+    border: 1px solid transparent; cursor: pointer; transition: transform .15s ease, filter .15s ease;
   }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--accent); color: #14110a; }
+  .btn-ghost { background: transparent; border-color: var(--border); color: var(--text); }
+  .btn-ghost:hover { border-color: var(--muted); }
 
-  .btn-primary {
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    color: #1a1206;
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(255, 140, 70, 0.35);
-  }
-
-  .btn-ghost {
-    background: transparent;
-    border-color: var(--border);
-    color: var(--text);
-  }
-
-  .btn-ghost:hover {
-    background: var(--surface);
-    transform: translateY(-2px);
-  }
-
-  .hero-stats {
-    display: flex;
-    gap: 32px;
-    margin-top: 42px;
-    flex-wrap: wrap;
-  }
-
-  .stat b {
-    display: block;
-    font-size: 1.5rem;
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
-  .stat span { font-size: 0.85rem; color: var(--muted); }
-
-  .hero-visual {
-    position: relative;
-  }
-
-  .hero-card {
-    position: relative;
-    border-radius: 24px;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
-  }
-
-  .hero-card img {
-    width: 100%;
-    height: 420px;
-    object-fit: cover;
-  }
-
-  .hero-card .tag {
-    position: absolute;
-    left: 16px;
-    bottom: 16px;
-    padding: 8px 14px;
-    border-radius: 10px;
-    background: rgba(15, 17, 21, 0.75);
-    backdrop-filter: blur(6px);
-    font-size: 0.82rem;
-    font-weight: 600;
-    border: 1px solid var(--border);
-  }
-
-  .floating-badge {
-    position: absolute;
-    top: -14px;
-    right: -14px;
-    padding: 10px 16px;
-    border-radius: 14px;
-    background: linear-gradient(135deg, var(--accent), var(--accent-2));
-    color: #1a1206;
-    font-weight: 800;
-    font-size: 0.85rem;
-    box-shadow: 0 10px 30px rgba(255, 140, 70, 0.4);
-    transform: rotate(3deg);
-  }
-
-  /* ---------- SECTIONS ---------- */
-  section { padding: 80px 0; }
-
-  .section-head {
-    text-align: center;
-    max-width: 640px;
-    margin: 0 auto 48px;
-  }
-
-  .section-head .kicker {
-    color: var(--accent);
-    font-weight: 700;
-    font-size: 0.82rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-  }
-
-  .section-head h2 {
-    font-size: clamp(1.6rem, 3vw, 2.3rem);
-    margin-top: 10px;
-    font-weight: 800;
-    letter-spacing: -0.3px;
-  }
-
-  .section-head p {
-    color: var(--muted);
-    margin-top: 12px;
-  }
-
-  /* ---------- CARDS ---------- */
-  .grid-3 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
-  }
-
-  .card {
-    background: var(--surface);
+  /* ---------- Hero mock ---------- */
+  .mock {
+    background: var(--bg-soft);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 28px;
-    transition: transform 0.25s, border-color 0.25s, background 0.25s;
+    box-shadow: 0 30px 80px rgba(0,0,0,.45);
+    overflow: hidden;
+    font-size: 13px;
   }
-
-  .card:hover {
-    transform: translateY(-6px);
-    border-color: rgba(255, 179, 71, 0.45);
-    background: var(--surface-2);
+  .mock-bar {
+    display: flex; align-items: center; gap: 8px;
+    padding: 12px 16px; border-bottom: 1px solid var(--border);
+    background: #12141a;
   }
-
-  .card .icon {
-    width: 48px; height: 48px;
-    display: grid; place-items: center;
-    border-radius: 12px;
-    background: rgba(255, 179, 71, 0.12);
-    font-size: 1.5rem;
-    margin-bottom: 18px;
+  .mock-bar .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .mock-bar .dot:nth-child(1){ background:#ef6b6b; }
+  .mock-bar .dot:nth-child(2){ background:#f2c14e; }
+  .mock-bar .dot:nth-child(3){ background:#6ee7b7; }
+  .mock-title { margin-left: 10px; color: var(--muted); font-size: 12px; }
+  .mock-body { display: grid; grid-template-columns: 150px 1fr; min-height: 300px; }
+  .mock-side { border-right: 1px solid var(--border); padding: 14px 10px; background: #14161d; }
+  .mock-side div {
+    padding: 8px 10px; border-radius: 8px; color: var(--muted); font-size: 12.5px; margin-bottom: 4px;
   }
-
-  .card h3 { font-size: 1.12rem; margin-bottom: 8px; }
-  .card p { color: var(--muted); font-size: 0.93rem; }
-
-  /* ---------- BREEDS ---------- */
-  .breeds {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+  .mock-side div.active { background: rgba(242,163,60,.12); color: var(--accent); font-weight: 600; }
+  .mock-main { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+  .mock-profile {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px; color: var(--muted); margin-bottom: 4px;
   }
+  .mock-card {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    background: var(--card); border: 1px solid var(--border);
+    padding: 12px 14px; border-radius: 12px;
+  }
+  .mock-card .name { font-weight: 600; font-size: 13px; }
+  .mock-card .meta { color: var(--muted); font-size: 11.5px; }
+  .tag { font-size: 11px; padding: 3px 8px; border-radius: 999px; font-weight: 600; }
+  .tag.on { background: rgba(110,231,183,.12); color: var(--accent-2); }
+  .tag.warn { background: rgba(239,107,107,.12); color: var(--danger); }
+  .switch {
+    width: 34px; height: 20px; border-radius: 999px; background: var(--accent); position: relative; flex: none;
+  }
+  .switch::after {
+    content: ""; position: absolute; top: 2px; right: 2px; width: 16px; height: 16px;
+    border-radius: 50%; background: #14110a;
+  }
+  .switch.off { background: var(--border); }
+  .switch.off::after { right: auto; left: 2px; background: var(--muted); }
 
+  /* ---------- Sections ---------- */
+  section { padding: 72px 0; }
+  .section-head { max-width: 640px; margin-bottom: 42px; }
+  .kicker {
+    font-size: 12px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--accent); font-weight: 700; margin-bottom: 12px;
+  }
+  h2 { font-size: clamp(26px, 3.6vw, 40px); letter-spacing: -.02em; line-height: 1.1; }
+  .section-head p { color: var(--muted); margin-top: 14px; font-size: 16px; }
+
+  /* ---------- Features ---------- */
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .feature {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 26px 24px;
+    transition: border-color .2s, transform .2s;
+  }
+  .feature:hover { border-color: #3a3f4f; transform: translateY(-3px); }
+  .feature .ico { font-size: 26px; margin-bottom: 16px; display: inline-block; }
+  .feature h3 { font-size: 18px; margin-bottom: 8px; letter-spacing: -.01em; }
+  .feature p { color: var(--muted); font-size: 14.5px; }
+
+  /* ---------- Stats ---------- */
+  .stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+    background: var(--bg-soft); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 34px 28px;
+  }
+  .stat { text-align: center; }
+  .stat strong { display: block; font-size: clamp(26px, 3vw, 38px); letter-spacing: -.03em; color: var(--accent); }
+  .stat span { color: var(--muted); font-size: 13px; }
+
+  /* ---------- Breeds ---------- */
+  .breeds { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
   .breed {
-    position: relative;
-    border-radius: var(--radius);
-    overflow: hidden;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    cursor: pointer;
-    transition: transform 0.3s, border-color 0.3s;
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    overflow: hidden; transition: transform .2s, border-color .2s;
   }
-
-  .breed:hover {
-    transform: translateY(-8px);
-    border-color: rgba(255, 179, 71, 0.5);
+  .breed:hover { transform: translateY(-4px); border-color: #3a3f4f; }
+  .breed-emoji {
+    font-size: 44px; height: 120px; display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(160deg, rgba(242,163,60,.14), rgba(110,231,183,.08));
+    border-bottom: 1px solid var(--border);
   }
+  .breed-body { padding: 18px; }
+  .breed h3 { font-size: 17px; margin-bottom: 4px; }
+  .breed .role { color: var(--accent-2); font-size: 12.5px; font-weight: 600; margin-bottom: 10px; }
+  .breed p { color: var(--muted); font-size: 13.5px; }
 
-  .breed img {
-    width: 100%;
-    height: 230px;
-    object-fit: cover;
-    transition: transform 0.5s;
+  /* ---------- Quote ---------- */
+  .quote {
+    text-align: center; max-width: 760px; margin: 0 auto;
+    padding: 52px 24px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
   }
-
-  .breed:hover img { transform: scale(1.07); }
-
-  .breed .info {
-    position: absolute;
-    inset: auto 0 0 0;
-    padding: 18px;
-    background: linear-gradient(to top, rgba(10, 12, 16, 0.95), transparent);
-  }
-
-  .breed .info h4 { font-size: 1.05rem; }
-  .breed .info span { font-size: 0.8rem; color: var(--accent); font-weight: 600; }
-
-  /* ---------- QUOTE ---------- */
-  .quote-block {
-    text-align: center;
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 50px 30px;
-    border-radius: 24px;
-    background:
-      radial-gradient(500px 200px at 50% 0%, rgba(255, 179, 71, 0.12), transparent 70%),
-      var(--surface);
-    border: 1px solid var(--border);
-  }
-
-  .quote-block .mark { font-size: 3rem; color: var(--accent); line-height: 1; }
-  .quote-block p { font-size: 1.25rem; font-style: italic; margin-top: 8px; }
-  .quote-block .author { margin-top: 18px; color: var(--muted); font-size: 0.9rem; }
+  .quote blockquote { font-size: clamp(20px, 2.6vw, 28px); font-weight: 600; letter-spacing: -.01em; line-height: 1.35; }
+  .quote cite { display: block; margin-top: 16px; color: var(--muted); font-size: 14px; font-style: normal; }
 
   /* ---------- CTA ---------- */
   .cta {
-    text-align: center;
-    padding: 70px 30px;
-    border-radius: 24px;
-    background:
-      radial-gradient(600px 240px at 50% 0%, rgba(255, 122, 89, 0.18), transparent 70%),
-      linear-gradient(180deg, var(--surface-2), var(--surface));
-    border: 1px solid var(--border);
+    background: linear-gradient(140deg, rgba(242,163,60,.16), rgba(110,231,183,.08));
+    border: 1px solid var(--border); border-radius: 22px;
+    padding: 48px 40px; text-align: center;
   }
+  .cta h2 { margin-bottom: 14px; }
+  .cta p { color: var(--muted); max-width: 520px; margin: 0 auto 26px; }
+  .cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
-  .cta h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; }
-  .cta p { color: var(--muted); margin-top: 12px; max-width: 520px; margin-inline: auto; }
-  .cta .hero-actions { justify-content: center; }
+  /* ---------- Footer ---------- */
+  footer { border-top: 1px solid var(--border); padding: 36px 0; color: var(--muted); font-size: 13.5px; }
+  .footer-grid { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+  .footer-links a:hover { color: var(--text); }
 
-  /* ---------- FOOTER ---------- */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 32px 0;
-    color: var(--muted);
-    font-size: 0.88rem;
-  }
-
-  .footer-inner {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-
-  .footer-links { display: flex; gap: 22px; }
-  .footer-links a:hover { color: var(--accent); }
-
-  /* ---------- RESPONSIVE ---------- */
-  @media (max-width: 980px) {
-    .hero-inner { grid-template-columns: 1fr; }
-    .hero-card img { height: 340px; }
-    .breeds { grid-template-columns: repeat(2, 1fr); }
-    .grid-3 { grid-template-columns: 1fr 1fr; }
-  }
-
-  @media (max-width: 720px) {
-    .nav-links { display: none; }
-    .burger { display: block; }
-    .nav-links.open {
-      display: flex;
-      position: absolute;
-      top: 64px; left: 0; right: 0;
-      flex-direction: column;
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 18px 20px;
-      gap: 16px;
-    }
-    .grid-3 { grid-template-columns: 1fr; }
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .features { grid-template-columns: 1fr 1fr; }
     .breeds { grid-template-columns: 1fr 1fr; }
-    section { padding: 60px 0; }
-    .hero { padding: 60px 0; }
+    .stats { grid-template-columns: 1fr 1fr; gap: 28px; }
+    .nav-links { display: none; }
   }
-
-  @media (max-width: 460px) {
-    .breeds { grid-template-columns: 1fr; }
-    .hero-stats { gap: 22px; }
+  @media (max-width: 560px) {
+    .features, .breeds { grid-template-columns: 1fr; }
+    .mock-body { grid-template-columns: 1fr; }
+    .mock-side { display: none; }
+    .cta { padding: 36px 22px; }
     .nav-cta { display: none; }
   }
 </style>
 </head>
 <body>
 
-<!-- ================= HEADER ================= -->
 <header>
   <div class="container nav">
-    <a href="#" class="logo">🐾 Крутые <span>собаки</span></a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#features">Почему они</a></li>
-      <li><a href="#breeds">Породы</a></li>
-      <li><a href="#quote">Цитата</a></li>
-      <li><a href="#cta">Присоединиться</a></li>
-    </ul>
-    <a href="#cta" class="nav-cta">Хочу собаку</a>
-    <button class="burger" id="burger" aria-label="Меню">☰</button>
+    <a href="#top" class="logo"><span>🐶</span> DogOS</a>
+    <nav class="nav-links">
+      <a href="#why">Почему</a>
+      <a href="#stats">Цифры</a>
+      <a href="#breeds">Породы</a>
+      <a href="#start">Начать</a>
+    </nav>
+    <a href="#start" class="nav-cta">Выбрать друга</a>
   </div>
 </header>
 
-<!-- ================= HERO ================= -->
-<section class="hero">
-  <div class="container hero-inner">
-    <div class="hero-text">
-      <div class="badge"><span class="dot"></span> Лучшие друзья человечества</div>
-      <h1>Собаки — это <span class="grad">круто</span>.<br>И это факт.</h1>
-      <p class="lead">
-        Верные, смешные, невероятно умные и бесконечно преданные.
-        Здесь — о том, за что мы их любим, и о породах, которые
-        действительно впечатляют.
-      </p>
-      <div class="hero-actions">
-        <a href="#breeds" class="btn btn-primary">Смотреть породы →</a>
-        <a href="#features" class="btn btn-ghost">Узнать больше</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat"><b>340+</b><span>пород в мире</span></div>
-        <div class="stat"><b>~15 000</b><span>лет рядом с человеком</span></div>
-        <div class="stat"><b>300 млн</b><span>обонятельных рецепторов</span></div>
-      </div>
-    </div>
-
-    <div class="hero-visual">
-      <div class="floating-badge">Топ-1 друг</div>
-      <div class="hero-card">
-        <img
-          src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=900&q=80"
-          alt="Крутая собака"
-          loading="eager"
-        />
-        <div class="tag">🐶 Хороший мальчик / девочка</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= FEATURES ================= -->
-<section id="features">
-  <div class="container">
-    <div class="section-head">
-      <div class="kicker">Почему собаки</div>
-      <h2>Причины, по которым они крутые</h2>
-      <p>Не только милота — за этим стоит эволюция, биология и миллионы лет дружбы.</p>
-    </div>
-
-    <div class="grid-3">
-      <div class="card">
-        <div class="icon">🧠</div>
-        <h3>Ум и обучаемость</h3>
-        <p>Собаки понимают до 250 слов и жестов, решают задачи и запоминают маршруты. Некоторые породы по интеллекту сравнимы с 2–3-летним ребёнком.</p>
-      </div>
-      <div class="card">
-        <div class="icon">❤️</div>
-        <h3>Преданность</h3>
-        <p>Собаки привязываются к человеку искренне — меняется даже гормональный фон при встрече с хозяином. Это не дрессировка, это чувства.</p>
-      </div>
-      <div class="card">
-        <div class="icon">👃</div>
-        <h3>Супер-нюх</h3>
-        <p>До 300 млн обонятельных рецепторов против 6 млн у человека. Они чувствуют болезни, запахи на расстоянии и «читают» мир носом.</p>
-      </div>
-      <div class="card">
-        <div class="icon">💪</div>
-        <h3>Разнообразие</h3>
-        <p>От чихуахуа до мастифов — более 340 пород под любые задачи, климат и характер. Есть из кого выбрать.</p>
-      </div>
-      <div class="card">
-        <div class="icon">🏃</div>
-        <h3>Спорт и активность</h3>
-        <p>С собакой вы гуляете больше, двигаетесь чаще и живёте активнее. Это самый приятный фитнес-тренер.</p>
-      </div>
-      <div class="card">
-        <div class="icon">🤝</div>
-        <h3>Социализация</h3>
-        <p>Собаки — отличный повод для знакомств. Парки, площадки, клубы — вокруг них формируется сообщество.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= BREEDS ================= -->
-<section id="breeds">
-  <div class="container">
-    <div class="section-head">
-      <div class="kicker">Породы</div>
-      <h2>Которые действительно круты</h2>
-      <p>Четыре породы с характером — от рабочей классики до современных компаньонов.</p>
-    </div>
-
-    <div class="breeds">
-      <article class="breed">
-        <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=600&q=80" alt="Лабрадор" loading="lazy" />
-        <div class="info">
-          <h4>Лабрадор</h4>
-          <span>Добрый и надёжный</span>
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="badge"><span class="dot"></span> Уже 15 000 лет в топе</div>
+        <h1>Собаки — это <span class="accent">круто</span>.<br>И это факт.</h1>
+        <p class="lead">
+          Верные, смешные, невероятно умные. Здесь — всё, за что мы их любим,
+          и породы, которые действительно впечатляют. Без воды и соплей.
+        </p>
+        <div class="hero-actions">
+          <a href="#breeds" class="btn btn-primary">Смотреть породы →</a>
+          <a href="#why" class="btn btn-ghost">Почему это работает</a>
         </div>
-      </article>
+      </div>
 
-      <article class="breed">
-        <img src="https://images.unsplash.com/photo-1589941013453-ec89f33b5e95?auto=format&fit=crop&w=600&q=80" alt="Хаски" loading="lazy" />
-        <div class="info">
-          <h4>Хаски</h4>
-          <span>Энергия и характер</span>
+      <!-- Имитация "интерфейса" как у Deadlock -->
+      <div class="mock" aria-hidden="true">
+        <div class="mock-bar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="mock-title">DogOS · профиль «Хороший мальчик»</span>
         </div>
-      </article>
-
-      <article class="breed">
-        <img src="https://images.unsplash.com/photo-1568572933382-74d440642117?auto=format&fit=crop&w=600&q=80" alt="Бордер-колли" loading="lazy" />
-        <div class="info">
-          <h4>Бордер-колли</h4>
-          <span>Самый умный</span>
+        <div class="mock-body">
+          <div class="mock-side">
+            <div class="active">Породы</div>
+            <div>Навыки</div>
+            <div>Уход</div>
+            <div>Настройки</div>
+          </div>
+          <div class="mock-main">
+            <div class="mock-profile"><span>Активные качества</span><span>3 из 5</span></div>
+            <div class="mock-card">
+              <div><div class="name">Преданность</div><div class="meta">врождённое · v∞</div></div>
+              <span class="tag on">Вкл</span>
+            </div>
+            <div class="mock-card">
+              <div><div class="name">Нюх</div><div class="meta">300 млн рецепторов</div></div>
+              <span class="switch" aria-hidden="true"></span>
+            </div>
+            <div class="mock-card">
+              <div><div class="name">Обучаемость</div><div class="meta">до 250 слов</div></div>
+              <span class="switch" aria-hidden="true"></span>
+            </div>
+            <div class="mock-card">
+              <div><div class="name">Сон на диване</div><div class="meta">конфликт с прогулкой</div></div>
+              <span class="tag warn">Внимание</span>
+            </div>
+          </div>
         </div>
-      </article>
-
-      <article class="breed">
-        <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=600&q=80" alt="Корги" loading="lazy" />
-        <div class="info">
-          <h4>Корги</h4>
-          <span>Маленький, но смелый</span>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ================= QUOTE ================= -->
-<section id="quote">
-  <div class="container">
-    <div class="quote-block">
-      <div class="mark">“</div>
-      <p>Чем больше я узнаю людей, тем больше люблю собак.</p>
-      <div class="author">— приписывается Генриху Гейне</div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= CTA ================= -->
-<section id="cta">
-  <div class="container">
-    <div class="cta">
-      <h2>Готовы завести друга?</h2>
-      <p>Начните с выбора породы, изучения ухода и знакомства с приютами. Хороший старт — половина успеха.</p>
-      <div class="hero-actions">
-        <a href="#breeds" class="btn btn-primary">Выбрать породу</a>
-        <a href="#features" class="btn btn-ghost">Читать о породах</a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ================= FOOTER ================= -->
+  <!-- WHY -->
+  <section id="why">
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">Почему собаки</div>
+        <h2>Три причины, по которым они крутые</h2>
+        <p>Не только милота — за этим стоит эволюция, биология и миллионы лет дружбы.</p>
+      </div>
+      <div class="features">
+        <div class="feature">
+          <span class="ico">🧠</span>
+          <h3>Ум и обучаемость</h3>
+          <p>Понимают до 250 слов и жестов, решают задачи и запоминают маршруты. Некоторые породы по интеллекту сравнимы с 2–3-летним ребёнком.</p>
+        </div>
+        <div class="feature">
+          <span class="ico">❤️</span>
+          <h3>Преданность</h3>
+          <p>Привязываются искренне — меняется даже гормональный фон при встрече с хозяином. Это не дрессировка, это чувства.</p>
+        </div>
+        <div class="feature">
+          <span class="ico">👃</span>
+          <h3>Супер-нюх</h3>
+          <p>До 300 млн обонятельных рецепторов против 6 млн у человека. Чувствуют болезни, запахи на расстоянии и «читают» мир носом.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section id="stats" style="padding-top: 0;">
+    <div class="container">
+      <div class="stats">
+        <div class="stat"><strong>340+</strong><span>пород в мире</span></div>
+        <div class="stat"><strong>~15 000</strong><span>лет рядом с человеком</span></div>
+        <div class="stat"><strong>300 млн</strong><span>обонятельных рецепторов</span></div>
+        <div class="stat"><strong>Топ-1</strong><span>друг человека</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BREEDS -->
+  <section id="breeds">
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">Породы</div>
+        <h2>Которые действительно круты</h2>
+        <p>Четыре породы с характером — от рабочей классики до современных компаньонов.</p>
+      </div>
+      <div class="breeds">
+        <article class="breed">
+          <div class="breed-emoji">🦮</div>
+          <div class="breed-body">
+            <h3>Лабрадор</h3>
+            <div class="role">Добрый и надёжный</div>
+            <p>Компаньон, поводырь, спасатель. Везде, где нужен спокойный характер и железная нервная система.</p>
+          </div>
+        </article>
+        <article class="breed">
+          <div class="breed-emoji">🐺</div>
+          <div class="breed-body">
+            <h3>Хаски</h3>
+            <div class="role">Энергия и характер</div>
+            <p>Ездовая собака с собственным мнением. Много движения, мало скуки и громкий голос в комплекте.</p>
+          </div>
+        </article>
+        <article class="breed">
+          <div class="breed-emoji">🐕</div>
+          <div class="breed-body">
+            <h3>Бордер-колли</h3>
+            <div class="role">Самый умный</div>
+            <p>Пастушья работоспособность и интеллект на уровне. Понимает команды быстрее, чем вы успеваете их придумать.</p>
+          </div>
+        </article>
+        <article class="breed">
+          <div class="breed-emoji">🐶</div>
+          <div class="breed-body">
+            <h3>Корги</h3>
+            <div class="role">Маленький, но смелый</div>
+            <p>Короткие лапы, большая самоуверенность. Пастух в теле компактного компаньона с чувством юмора.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section style="padding-top: 0; padding-bottom: 0;">
+    <div class="quote">
+      <blockquote>«Чем больше я узнаю людей, тем больше люблю собак.»</blockquote>
+      <cite>— приписывается Генриху Гейне</cite>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="start">
+    <div class="container">
+      <div class="cta">
+        <h2>Готовы завести друга?</h2>
+        <p>Начните с выбора породы, изучения ухода и знакомства с приютами. Хороший старт — половина успеха.</p>
+        <div class="cta-actions">
+          <a href="#breeds" class="btn btn-primary">Выбрать породу</a>
+          <a href="#why" class="btn btn-ghost">Узнать больше</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
 <footer>
-  <div class="container footer-inner">
-    <div>© <span id="year"></span> Крутые собаки. Учебный лендинг.</div>
+  <div class="container footer-grid">
+    <div>© 2026 DogOS. Собаки — это круто.</div>
     <div class="footer-links">
-      <a href="#features">Почему они</a>
+      <a href="#why">Почему</a>
       <a href="#breeds">Породы</a>
-      <a href="#cta">Присоединиться</a>
+      <a href="#start">Начать</a>
     </div>
   </div>
 </footer>
-
-<script>
-  // Год в футере
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  // Мобильное меню
-  const burger = document.getElementById('burger');
-  const navLinks = document.getElementById('navLinks');
-  burger.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-  });
-
-  // Закрыть меню после клика по ссылке (мобильные)
-  navLinks.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => navLinks.classList.remove('open'));
-  });
-
-  // Плавное появление карточек при скролле
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.15 }
-  );
-
-  document.querySelectorAll('.card, .breed').forEach((el) => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(24px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
-  });
-</script>
 
 </body>
 </html>
