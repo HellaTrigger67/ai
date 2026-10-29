@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Контакты — DogOS</title>
+<link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a href="index.html" class="logo"><span>🐶</span> DogOS</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Главная</a>
+      <a href="breeds.html">Породы</a>
+      <a href="care.html">Уход</a>
+      <a href="stories.html">Истории</a>
+      <a href="contacts.html">Контакты</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Меню">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero" style="padding-bottom:20px;">
+    <div class="container">
+      <div class="badge"><span class="dot"></span> На связи</div>
+      <h1>Напишите <span style="color:var(--accent)">нам</span></h1>
+      <p class="lead" style="margin-top:18px;">Вопрос по породе, уходу или своя история — всё сюда. Отвечаем быстро, лаем редко.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:20px;">
+    <div class="container grid-2">
+      <div>
+        <h3 style="margin-bottom:18px;">Контакты</h3>
+        <div class="contact-card"><span class="ico">📧</span><div><strong>Email</strong><span>hello@dogos.example</span></div></div>
+        <div class="contact-card"><span class="ico">📞</span><div><strong>Телефон</strong><span>+7 (900) 000-00-00</span></div></div>
+        <div class="contact-card"><span class="ico">📍</span><div><strong>Адрес</strong><span>Москва, ул. Собачья, д. 1</span></div></div>
+        <div class="contact-card"><span class="ico">🕒</span><div><strong>Часы работы</strong><span>Пн–Вс, 10:00–20:00</span></div></div>
+      </div>
+
+      <div>
+        <h3 style="margin-bottom:18px;">Форма обратной связи</h3>
+        <form class="form" id="contactForm">
+          <div class="form-row">
+            <div><label for="cname">Имя</label><input id="cname" type="text" placeholder="Как вас зовут" required /></div>
+            <div><label for="cemail">Email</label><input id="cemail" type="email" placeholder="you@example.com" required /></div>
+          </div>
+          <div><label for="ctopic">Тема</label>
+            <select id="ctopic" required>
+              <option value="">Выберите тему</option>
+              <option>Выбор породы</option>
+              <option>Уход и здоровье</option>
+              <option>Своя история</option>
+              <option>Другое</option>
+            </select>
+          </div>
+          <div><label for="cmsg">Сообщение</label><textarea id="cmsg" placeholder="Расскажите, чем помочь" required></textarea></div>
+          <button type="submit" class="btn btn-primary">Отправить</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="container">
+      <div class="cta">
+        <h2>Хотите помочь приютам?</h2>
+        <p>Мы сотрудничаем с приютами — расскажем, как помочь делом или финансами.</p>
+        <div class="cta-actions"><a href="stories.html" class="btn btn-ghost">Читать истории</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-grid">
+    <div>© 2026 DogOS. Собаки — это круто.</div>
+    <div class="footer-links">
+      <a href="breeds.html">Породы</a>
+      <a href="care.html">Уход</a>
+      <a href="stories.html">Истории</a>
+      <a href="contacts.html">Контакты</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
